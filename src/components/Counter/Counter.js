@@ -11,13 +11,17 @@ import {
   addCourtesyAction,
   setGameFailedAction
 } from "../../redux/actions/index";
+import {
+  startGameSwitcherSelector,
+  userDataSelector,
+  counterSelector
+} from '../../redux/useSelectors';
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const store = useSelector(state => state);
-  const { isStartGameBtnDisabled, isGameStarted, isWinnerText } = store.startGameSwitcher;
-  const { userName } = store.userData;
-  const { counter, isGameFailed } = store.counter;
+  const { isGameStarted, isWinnerText } = useSelector(startGameSwitcherSelector);
+  const { userName } = useSelector(userDataSelector);
+  const { counter, isGameFailed } = useSelector(counterSelector);
 
   useEffect(() => {
     if (counter > 100) {
@@ -56,7 +60,7 @@ const Counter = () => {
         Score: {counter} / 100
       </h3>
 
-      <StartSection isGameStarted={isGameStarted} isStartGameBtnDisabled={isStartGameBtnDisabled} />
+      <StartSection />
 
       <div className={isGameStarted ? "container__buttons" : "hidden" }>
         <button className="btn" onClick={addPrudence}> add Prudence + 27 </button>
@@ -69,7 +73,7 @@ const Counter = () => {
 
       <div className={isWinnerText ? "container__winner-text" : "hidden"}>Congratulations<br />{userName}</div>
 
-      <Navigation counter={counter} isGameStarted={isGameStarted} />
+      <Navigation />
 
     </div>
   );

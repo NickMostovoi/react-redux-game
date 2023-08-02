@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   startGameAction,
   disableStartGameBtnAction,
   setUserDataAction,
 } from "../../redux/actions/index";
+import { startGameSwitcherSelector } from "../../redux/useSelectors";
 
-const StartSection = ({isGameStarted, isStartGameBtnDisabled}) => {
+const StartSection = () => {
   const [userNameInputValue, setUserNameInputValue] = useState('');
   const dispatch = useDispatch();
+  const { isStartGameBtnDisabled, isGameStarted } = useSelector(startGameSwitcherSelector);
 
   const onChangeUsername = (event) => {
     setUserNameInputValue(event.target.value);

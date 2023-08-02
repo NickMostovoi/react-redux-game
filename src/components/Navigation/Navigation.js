@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetCounterAction, showWinnerTextAction } from "../../redux/actions/index";
+import { counterSelector, startGameSwitcherSelector } from "../../redux/useSelectors";
 
 const setEscapeButton = (event, counter) => {
   const random = (min, max) => {
@@ -15,9 +16,11 @@ const setEscapeButton = (event, counter) => {
   }
 }
 
-const Navigation = ({counter, isGameStarted}) => {
+const Navigation = () => {
   const finishGameBtnRef = useRef(null);
   const dispatch = useDispatch();
+  const { counter } = useSelector(counterSelector);
+  const { isGameStarted } = useSelector(startGameSwitcherSelector);
 
   const onMouseMove = (event) => {
     setEscapeButton(event, counter);
