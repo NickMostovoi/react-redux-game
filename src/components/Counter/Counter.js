@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Navigation from '../Navigation/Navigation';
 import StartSection from '../StartSection/StartSection';
-import { 
-  addPrudenceAction, 
+import {
+  addPrudenceAction,
   addCreativityAction,
   addSociabilityAction,
   addCollectivismAction,
@@ -13,7 +13,7 @@ import {
 } from "../../redux/actions/index";
 
 const Counter = () => {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
   const store = useSelector(state => state);
   const { isStartGameBtnDisabled, isGameStarted, isWinnerText } = store.startGameSwitcher;
   const { userName } = store.userData;
@@ -51,12 +51,12 @@ const Counter = () => {
 
   return (
     <div className="container">
-      
+
       <h3 className={isGameFailed ? 'container__score container__score_failed' : "container__score"}>
         Score: {counter} / 100
       </h3>
 
-      <StartSection isGameStarted={isGameStarted} isStartGameBtnDisabled={isStartGameBtnDisabled} /> 
+      <StartSection isGameStarted={isGameStarted} isStartGameBtnDisabled={isStartGameBtnDisabled} />
 
       <div className={isGameStarted ? "container__buttons" : "hidden" }>
         <button className="btn" onClick={addPrudence}> add Prudence + 27 </button>

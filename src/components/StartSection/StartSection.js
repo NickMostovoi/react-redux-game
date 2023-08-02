@@ -1,16 +1,18 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { 
+import {
   startGameAction,
   disableStartGameBtnAction,
   setUserDataAction,
 } from "../../redux/actions/index";
 
 const StartSection = ({isGameStarted, isStartGameBtnDisabled}) => {
-  const userNameInputRef = useRef(null);
-  const dispatch = useDispatch();  
+  const [userNameInputValue, setUserNameInputValue] = useState('');
+  const dispatch = useDispatch();
 
-  const onChangeUsername = (event) => {    
+  const onChangeUsername = (event) => {
+    setUserNameInputValue(event.target.value);
+
     if (event.target.value.length >= 3) {
       dispatch(disableStartGameBtnAction(false));
     } else {
@@ -20,22 +22,24 @@ const StartSection = ({isGameStarted, isStartGameBtnDisabled}) => {
 
   const handleStartGame = () => {
     dispatch(startGameAction(true));
-    dispatch(setUserDataAction(userNameInputRef.current.value));
+    dispatch(setUserDataAction(userNameInputValue));
   };
-  
+
+  console.log();
+
   return (
     <div className={isGameStarted ? "hidden" : "container__start"}>
       <div className="username">
         <span className="username__text">Username</span>
-        <input 
-          className="username__input" 
-          onChange={(event) => onChangeUsername(event)}
+        <input
+          className="username__input"
+          onChange={onChangeUsername}
           placeholder="Required"
-          ref={userNameInputRef} 
+          value={userNameInputValue}
         />
       </div>
 
-      <button 
+      <button
         className="btn btn__start"
         onClick={handleStartGame}
         disabled={isStartGameBtnDisabled}>

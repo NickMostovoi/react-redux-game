@@ -17,7 +17,7 @@ const setEscapeButton = (event, counter) => {
 
 const Navigation = ({counter, isGameStarted}) => {
   const finishGameBtnRef = useRef(null);
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
 
   const onMouseMove = (event) => {
     setEscapeButton(event, counter);
@@ -40,16 +40,16 @@ const Navigation = ({counter, isGameStarted}) => {
 
   return (
     <div className={isGameStarted ? "navigation" : "hidden"}>
-      <button 
-        className="btn btn__finish" 
+      <button
+        className="btn btn__finish"
         ref={finishGameBtnRef}
-        onMouseMove={(event) => onMouseMove(event)}
+        onMouseMove={onMouseMove}
         onClick={handleFinish}>
-        Finish 
+        Finish
       </button>
 
-      <button 
-        className="btn btn__reset" 
+      <button
+        className="btn btn__reset"
         onClick={handleReset}>
         RESET
       </button>
