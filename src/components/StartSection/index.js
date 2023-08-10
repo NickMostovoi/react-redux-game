@@ -27,8 +27,6 @@ const StartSection = () => {
     dispatch(setUserDataAction(userNameInputValue));
   };
 
-  console.log();
-
   return (
     <div className={isGameStarted ? "hidden" : "container__start"}>
       <div className="username">

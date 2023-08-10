@@ -1,20 +1,8 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetCounterAction, showWinnerTextAction } from "../../redux/actions/index";
 import { counterSelector, startGameSwitcherSelector } from "../../redux/useSelectors";
-
-const setEscapeButton = (event, counter) => {
-  const random = (min, max) => {
-    const randomNumber = min + Math.random() * (max - min + 1);
-    return Math.floor(randomNumber);
-  };
-
-  if (counter !== 100) {
-    event.target.style.left = `${random(-40, 50)}%`;
-    event.target.style.top = `${random(15, 85)}%`;
-    event.target.style.transform = `rotate(${random(-40, 40)}deg)`;
-  }
-}
+import { setEscapeButton } from "./helper";
 
 const Navigation = () => {
   const finishGameBtnRef = useRef(null);
@@ -35,11 +23,13 @@ const Navigation = () => {
     dispatch(showWinnerTextAction(false))
   };
 
-  if (counter === 100) {
-    finishGameBtnRef.current.style.left = 0;
-    finishGameBtnRef.current.style.top = 0;
-    finishGameBtnRef.current.style.transform = 'rotate(0deg)';
-  }
+  useEffect(() => {
+    if (counter === 100) {
+      finishGameBtnRef.current.style.left = 0;
+      finishGameBtnRef.current.style.top = 0;
+      finishGameBtnRef.current.style.transform = 'rotate(0deg)';
+    }
+  }, [counter]);
 
   return (
     <div className={isGameStarted ? "navigation" : "hidden"}>

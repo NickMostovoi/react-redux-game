@@ -1,16 +1,8 @@
 import React, { useEffect } from "react";
+import * as ACTIONS from "../../redux/actions/index";
 import { useSelector, useDispatch } from "react-redux";
-import Navigation from '../Navigation/Navigation';
-import StartSection from '../StartSection/StartSection';
-import {
-  addPrudenceAction,
-  addCreativityAction,
-  addSociabilityAction,
-  addCollectivismAction,
-  addPersistenceAction,
-  addCourtesyAction,
-  setGameFailedAction
-} from "../../redux/actions/index";
+import Navigation from '../Navigation';
+import StartSection from '../StartSection';
 import {
   startGameSwitcherSelector,
   userDataSelector,
@@ -25,32 +17,32 @@ const Counter = () => {
 
   useEffect(() => {
     if (counter > 100) {
-      dispatch(setGameFailedAction(true));
+      dispatch(ACTIONS.setGameFailedAction(true));
     }
   }, [counter, dispatch]);
 
   const addPrudence = () => {
-    dispatch(addPrudenceAction());
+    dispatch(ACTIONS.addPrudenceAction());
   };
 
   const addCreativity = () => {
-    dispatch(addCreativityAction());
+    dispatch(ACTIONS.addCreativityAction());
   };
 
   const addSociability = () => {
-    dispatch(addSociabilityAction());
+    dispatch(ACTIONS.addSociabilityAction());
   };
 
   const addCollectivism = () => {
-    dispatch(addCollectivismAction());
+    dispatch(ACTIONS.addCollectivismAction());
   };
 
   const addPersistence = () => {
-    dispatch(addPersistenceAction());
+    dispatch(ACTIONS.addPersistenceAction());
   };
 
   const addCourtesy = () => {
-    dispatch(addCourtesyAction());
+    dispatch(ACTIONS.addCourtesyAction());
   };
 
   return (

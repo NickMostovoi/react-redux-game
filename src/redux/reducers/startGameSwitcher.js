@@ -1,30 +1,30 @@
-import { START_GAME, ENABLE_BTN, WINNER_TEXT } from "../actions/actions.types";
+import * as TYPES from "../actions/actions.types";
 
-const initalState = {
+const initialState = {
   isGameStarted: false,
   isStartGameBtnDisabled: true,
   isWinnerText: false
 };
 
-const startGameSwitcher = (state = initalState, action) => {
+const startGameSwitcher = (state = initialState, action) => {
 
   switch (action.type) {
-    case START_GAME:
-      return { 
-        ...state, 
-        isGameStarted: action.start 
+    case TYPES.START_GAME:
+      return {
+        ...state,
+        isGameStarted: action.start
       };
 
-    case ENABLE_BTN:
-      return { 
-        ...state, 
-        isStartGameBtnDisabled: action.enable 
+    case TYPES.ENABLE_BTN:
+      return {
+        ...state,
+        isStartGameBtnDisabled: action.enable
       };
 
-    case WINNER_TEXT:
-      return { 
-        ...state, 
-        isWinnerText: action.show 
+    case TYPES.WINNER_TEXT:
+      return {
+        ...state,
+        isWinnerText: action.show
       };
 
     default:

@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 
 import rootReducer from "../../redux/reducers/index";
-import Counter from "../Counter/Counter";
+import Counter from "../Counter";
 
 const store = createStore(rootReducer);
 
